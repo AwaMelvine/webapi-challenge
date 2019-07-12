@@ -44,15 +44,23 @@ module.exports = {
     }
   },
 
-  validateAction(req, res, next) {
-    if (!req.body) {
-      return res.status(400).json({ message: "missing action data" });
+  async validateAction(req, res, next) {
+    try {
+      const project = await Project.get(req.body.project_id);
+      if (!project) {
+        return res.status(404).json({ message: "The project does not exist" });
+      }
+      if (!req.body) {
+        return res.status(400).json({ message: "missing action data" });
+      }
+      if (!req.body.notes) {
+        return res
+          .status(400)
+          .json({ message: "Action must have at least notes" });
+      }
+      next();
+    } catch (error) {
+      console.log(error);
     }
-    if (!req.body.notes) {
-      return res
-        .status(400)
-        .json({ message: "Action must have at least notes" });
-    }
-    next();
   }
 };
