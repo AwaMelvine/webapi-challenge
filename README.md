@@ -30,11 +30,11 @@ I learned about Routing and Middleware in express
 
 - [ ] Describe Middleware?
 
-A middleware is a function or a piece of code that executes between the time when a request is made and before the request completes. This middleware can perform some checks or modifications on the request before passing it unto the next middleware or it can terminate the request depending on whether certain conditions meet or do not meet. 
+A middleware is a function or a piece of code that executes between the time when a request is made and before the request completes. This middleware can perform some checks or modifications on the request before passing it unto the next middleware or it can terminate the request depending on whether certain conditions meet or do not meet.
 
 - [ ] Describe a Resource?
 
-A resource is some distinct piece of data or information on an API. For example, users, posts, topics are all resources.
+A resource is some distinct piece of data or information on an API composed of a type, the actual data and possibly some relationship with other resources on the API. For example, users, posts, topics are all resources.
 
 - [ ] What can the API return to help clients know if a request was successful?
 
