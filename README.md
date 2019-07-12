@@ -26,13 +26,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+I learned about Routing and Middleware in express
+
 - [ ] Describe Middleware?
+
+A middleware is a function or a piece of code that executes between the time when a request is made and before the request completes. This middleware can perform some checks or modifications on the request before passing it unto the next middleware or it can terminate the request depending on whether certain conditions meet or do not meet. 
 
 - [ ] Describe a Resource?
 
+A resource is some distinct piece of data or information on an API. For example, users, posts, topics are all resources.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+An API can help clients know if a request was successful using status codes. For example, a status code of `201` will let the client know that a resource was created while a status code of `404` means that the requested resourse was not found.
+
 - [ ] How can we partition our application into sub-applications?
+
+We can partition our application into sub applications by using express router. Using express Router, we can split our application into sub applications each having their own router and their routes defined on them. These routes can then be imported into our server file (or anywhere else we might need to combine the sub applications) and injected into the main application as middleware.
 
 ## Project Setup
 
