@@ -17,7 +17,12 @@ const StyledProject = styled.div`
 
 const StyledName = styled(Link)`
   text-decoration: none;
+  color: inherit;
   font-family: "Courier New", Courier, monospace;
+
+  &:hover {
+    color: #96621c;
+  }
 `;
 
 const Project = ({ project }) => {
