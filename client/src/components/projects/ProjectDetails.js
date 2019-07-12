@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledProjectDetails = styled.div`
@@ -43,6 +44,7 @@ class ProjectDetails extends Component {
     const { name, description } = this.state.project;
     return (
       <StyledProjectDetails>
+        <Link to="/">Back</Link>
         <h2>{name}</h2>
         <div className="description">{description}</div>
       </StyledProjectDetails>

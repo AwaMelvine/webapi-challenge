@@ -30,17 +30,21 @@ module.exports = {
   },
 
   async validateActionId(req, res, next) {
-    const id = Number.parseInt(req.params.id, 10);
-    if (Number.isInteger(id)) {
-      const action = await Action.get(id);
-      if (action) {
-        req.action = action;
-        next();
+    try {
+      const id = Number.parseInt(req.params.id, 10);
+      if (Number.isInteger(id)) {
+        const action = await Action.get(id);
+        if (action) {
+          req.action = action;
+          next();
+        } else {
+          res.status(404).json({ message: "There's no action with that id" });
+        }
       } else {
-        res.status(404).json({ message: "There's no action with that id" });
+        res.status(400).json({ message: "invalid action id" });
       }
-    } else {
-      res.status(400).json({ message: "invalid action id" });
+    } catch (error) {
+      console.log(error);
     }
   },
 
