@@ -5,7 +5,7 @@ import styled from "styled-components";
 const StyledProject = styled.div`
   margin: 1rem auto;
   background: white;
-  padding: 0.5rem;
+  padding: 0.5rem 2rem;
   border: 1px solid #e0e0e0;
   border-radius: 5px;
 
