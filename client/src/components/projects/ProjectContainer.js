@@ -5,6 +5,19 @@ import Project from "./Project";
 
 const apiUrl = "http://localhost:5000";
 
+const StyledProjectList = styled.div`
+  width: 50%;
+  margin: 2rem auto;
+  background: white;
+  padding: 2rem;
+
+  h1 {
+    text-align: center;
+    color: #444;
+    font-family: "Courier New", Courier, monospace;
+  }
+`;
+
 class ProjectContainer extends Component {
   constructor(props) {
     super(props);
@@ -27,11 +40,12 @@ class ProjectContainer extends Component {
   render() {
     const { projects } = this.state;
     return (
-      <div>
+      <StyledProjectList>
+        <h1>Recent Projects</h1>
         {projects.map(project => (
           <Project key={project.id} project={project} />
         ))}
-      </div>
+      </StyledProjectList>
     );
   }
 }
