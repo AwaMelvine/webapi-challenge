@@ -49,7 +49,7 @@ router.delete("/:id", validateProjectId, async (req, res) => {
     const count = await Project.remove(id);
     res.status(200).json({ count });
   } catch (error) {
-    res.status(500).json({ message: "Failed to get project" });
+    res.status(500).json({ message: "Failed to delete project" });
   }
 });
 

@@ -1,10 +1,12 @@
 const express = require("express");
 const projectRoutes = require("./routes/projects");
+const actionRoutes = require("./routes/actions");
 const app = express();
 
 app.use(express.json());
 
 app.use("/api/projects", projectRoutes);
+app.use("/api/actions", actionRoutes);
 
 const port = process.env.PORT || 5000;
 
