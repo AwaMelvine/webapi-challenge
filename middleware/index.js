@@ -14,5 +14,17 @@ module.exports = {
     } else {
       res.status(400).json({ message: "invalid project id" });
     }
+  },
+
+  validateProject(req, res, next) {
+    if (!req.body) {
+      return res.status(400).json({ message: "missing project data" });
+    }
+    if (!req.body.name) {
+      return res
+        .status(400)
+        .json({ message: "Project must have at least a name" });
+    }
+    next();
   }
 };

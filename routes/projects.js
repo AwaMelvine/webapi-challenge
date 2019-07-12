@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const Project = require("../data/helpers/projectModel");
-const { validateProjectId } = require("../middleware/index");
+const { validateProjectId, validateProject } = require("../middleware/index");
 const router = new Router();
 
 router.get("/", async (req, res) => {
@@ -12,12 +12,13 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", validateProject, async (req, res) => {
   try {
     const { body } = req;
     const project = await Project.insert(body);
     res.status(200).json({ project });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Unable to create project" });
   }
 });
@@ -29,7 +30,7 @@ router.put("/:id", validateProjectId, async (req, res) => {
     const updatedProject = await Project.update(id, body);
     res.status(200).json({ updatedProject });
   } catch (error) {
-    res.status(500).json({ message: "Unable to create project" });
+    res.status(500).json({ message: "Unable to update project" });
   }
 });
 
