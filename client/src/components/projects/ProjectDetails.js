@@ -42,11 +42,18 @@ class ProjectDetails extends Component {
   }
   render() {
     const { name, description } = this.state.project;
+    const actions = this.state.project.actions;
     return (
       <StyledProjectDetails>
         <Link to="/">Back</Link>
         <h2>{name}</h2>
         <div className="description">{description}</div>
+        {actions && (
+          <div>
+            <h2>Actions</h2>
+            <ul>{actions && actions.map(action => <li>{action.notes}</li>)}</ul>
+          </div>
+        )}
       </StyledProjectDetails>
     );
   }
