@@ -21,4 +21,19 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const project = await Project.get(id);
+    if (!project) {
+      return res
+        .status(404)
+        .json({ message: "Requested project does not exist" });
+    }
+    res.status(200).json({ project });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to get project" });
+  }
+});
+
 module.exports = router;
