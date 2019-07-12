@@ -1,11 +1,10 @@
 const express = require("express");
+const projectRoutes = require("./routes/projects");
 const app = express();
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send({ message: "Welcome to the api" });
-});
+app.use("/api/projects", projectRoutes);
 
 const port = process.env.PORT || 5000;
 
