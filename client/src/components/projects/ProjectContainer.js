@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import Project from "./Project";
 
 const apiUrl = "http://localhost:5000";
 
@@ -28,7 +29,7 @@ class ProjectContainer extends Component {
     return (
       <div>
         {projects.map(project => (
-          <h2>{project.name}</h2>
+          <Project key={project.id} project={project} />
         ))}
       </div>
     );
