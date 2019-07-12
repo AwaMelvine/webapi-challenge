@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const Action = require("../data/helpers/actionModel");
+const { validateAction, validateActionId } = require("../middleware");
 const router = new Router();
 
 router.get("/", async (req, res) => {
@@ -11,7 +12,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", validateAction, async (req, res) => {
   try {
     const { body } = req;
     const action = await Action.insert(body);
@@ -22,9 +23,14 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", validateActionId, async (req, res) => {
   try {
     const { body } = req;
+
+    if (!!body) {
+      return res.status(400).json({ message: "missing action data" });
+    }
+
     const { id } = req.params;
     const updatedAction = await Action.update(id, body);
     res.status(200).json({ updatedAction });
@@ -33,17 +39,16 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", validateActionId, async (req, res) => {
   try {
-    const { id } = req.params;
-    const actions = await Action.get(id);
-    res.status(200).json({ actions });
+    const { action } = req;
+    res.status(200).json({ action });
   } catch (error) {
     res.status(500).json({ message: "Failed to get action" });
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", validateActionId, async (req, res) => {
   try {
     const { id } = req.params;
     const count = await Action.remove(id);
